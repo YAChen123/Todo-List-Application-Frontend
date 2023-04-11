@@ -12,6 +12,7 @@ function AuthBox({ register }) {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [username, setUsername] = useState("");
+  // eslint-disable-next-line no-unused-vars
   const [loading, setLoading] = useState(false);
   const [registerErrors, setRegisterErrors] = useState({});
   const [loginErrors, setLoginErrors] = useState({});
