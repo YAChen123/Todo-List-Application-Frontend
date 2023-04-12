@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useGlobalContext } from "../context/GlobalContext";
+import BASE_URL from "../config";
 
 function AuthBox({ register }) {
   const { getCurrentUser, user } = useGlobalContext();
@@ -58,7 +59,7 @@ function AuthBox({ register }) {
 
     register &&
       axios
-        .post("api/auth/register", data)
+        .post(`${BASE_URL}/api/auth/register`, data)
         .then((response) => {
           const token = response.data.token;
           localStorage.setItem("token", token);
@@ -73,7 +74,7 @@ function AuthBox({ register }) {
 
     !register &&
       axios
-        .post("api/auth/authenticate", data)
+        .post(`${BASE_URL}/api/auth/authenticate`, data)
         .then((response) => {
           const token = response.data.token;
           localStorage.setItem("token", token);
@@ -148,7 +149,7 @@ function AuthBox({ register }) {
               <label>Confirm Password</label>
               <input
                 type="password"
-                value={confirmPassword}
+                value={confirmPassword} 
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
               {registerErrors.confirmPassword && (

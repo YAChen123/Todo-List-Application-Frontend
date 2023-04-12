@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import axios from "axios";
 import { useGlobalContext } from "../context/GlobalContext";
+import BASE_URL from "../config";
 
 function ToDoCard({ toDo }) {
   const [title, setTitle] = useState(toDo.title);
@@ -33,7 +34,7 @@ function ToDoCard({ toDo }) {
         Authorization: `Bearer ${token}`,
       },
     });
-    api.put(`/api/tasks/task/complete`, updatedToDo).then((res) => {
+    api.put(`${BASE_URL}/api/tasks/task/complete`, updatedToDo).then((res) => {
       toDoComplete(res.data);
     });
   };
@@ -47,7 +48,7 @@ function ToDoCard({ toDo }) {
         Authorization: `Bearer ${token}`,
       },
     });
-    api.put(`/api/tasks/task/incomplete`, updatedToDo).then((res) => {
+    api.put(`${BASE_URL}/api/tasks/task/incomplete`, updatedToDo).then((res) => {
       toDoIncomplete(res.data);
     });
   };
@@ -63,7 +64,7 @@ function ToDoCard({ toDo }) {
     });
 
     if (window.confirm("Are you sure you want to delete this Todo?"))
-      api.delete(`/api/tasks/task/${toDo.uuid}/delete`).then(() => {
+      api.delete(`${BASE_URL}/api/tasks/task/${toDo.uuid}/delete`).then(() => {
         removeToDo(toDo);
       });
   };
@@ -78,7 +79,7 @@ function ToDoCard({ toDo }) {
       },
     });
     api
-      .put("/api/tasks/task/edit", updatedToDo)
+      .put(`${BASE_URL}/api/tasks/task/edit`, updatedToDo)
       .then((res) => {
         updateToDo(res.data);
         setEditing(false);

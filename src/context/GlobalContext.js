@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useReducer, useEffect } from "react";
 import axios from "axios";
+import BASE_URL from "../config";
 
 // initial state
 const initialState = {
@@ -62,9 +63,9 @@ export const GlobalProvider = (props) => {
         },
       });
 
-      const res = await api.get("api/auth/current");
+      const res = await api.get(`${BASE_URL}/api/auth/current`);
       if (res.data) {
-        const toDosRes = await api.get("/api/tasks/user/get");
+        const toDosRes = await api.get(`${BASE_URL}/api/tasks/user/get`);
 
         if (toDosRes.data) {
           dispatch({ type: "SET_USER", payload: res.data });

@@ -4,13 +4,14 @@ import Header from "./Header";
 import AuthBox from "./AuthBox";
 import { useGlobalContext } from "../context/GlobalContext";
 import Dashboard from "./Dashboard";
+import { DotLoader } from "react-spinners";
 
 function Layout() {
   const { fetchingUser } = useGlobalContext();
 
   return fetchingUser ? (
     <div className="loading">
-      <h1>Loading</h1>
+      <DotLoader />
     </div>
   ) : (
     <BrowserRouter>
